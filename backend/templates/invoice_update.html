@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Invoice</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Update Invoice</h2>
+      <form id="updateInvoiceForm">
+        <label for="invoice_number">Invoice Number:</label>
+        <input
+          type="text"
+          id="invoice_number"
+          name="invoice_number"
+          value="{{ invoice.invoice_number }}"
+          required
+        />
+
+        <label for="dispatch_plan_id">Dispatch Plan ID:</label>
+        <input
+          type="number"
+          id="dispatch_plan_id"
+          name="dispatch_plan_id"
+          value="{{ invoice.dispatch_plan_id }}"
+          required
+        />
+
+        <label for="amount">Amount:</label>
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          value="{{ invoice.amount }}"
+          step="0.01"
+          required
+        />
+
+        <button type="submit">Update Invoice</button>
+      </form>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const form = document.getElementById('updateInvoiceForm');
+          const invoiceId = {{ invoice.id }};
+
+          form.addEventListener('submit', async (event) => {
+              event.preventDefault(); // Prevent default form submission
+
+              const formData = new FormData(form);
+              const data = Object.fromEntries(formData.entries());
+
+              try {
+                  const response = await fetch(`/update_invoice/${invoiceId}`, {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify(data),
+                  });
+
+                  if (response.ok) {
+                      alert('Invoice updated successfully!');
+                      window.location.href = '/'; // Redirect to the main page
+                  } else {
+                      const errorData = await response.json();
+                      alert(`Error: ${errorData.error}`);
+                  }
+              } catch (error) {
+                  console.error('Error:', error);
+                  alert('Error updating invoice.');
+              }
+          });
+      });
+    </script>
+  </body>
+</html>

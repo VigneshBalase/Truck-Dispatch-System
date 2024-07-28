@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+      .header .brand {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+      .header a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+      .header a:hover {
+        text-decoration: underline;
+      }
+      .content {
+        flex: 1;
+        padding: 20px;
+        margin-top: 60px;
+      }
+      .footer {
+        background-color: #f4f4f4;
+        padding: 20px;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        /* height: auto; */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="brand">Ninja Truck Dispatcher</div>
+      <div>
+        <a href="/">Home</a>
+        <a href="/#about_us">About Us</a>
+        <a href="/#services">Services</a>
+        <a href="/#contact">Contact Us</a>
+        <a href="/dispatch_plans">Dispatch Plan</a>
+        <a href="/invoices">Invoices</a>
+        <a href="/truck_details">Truck Details</a>
+      </div>
+    </header>
+    <div class="content">{% block content %}{% endblock %}</div>
+    <footer class="footer">
+      <p>&copy; 2024 Ninja Truck Dispatcher. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

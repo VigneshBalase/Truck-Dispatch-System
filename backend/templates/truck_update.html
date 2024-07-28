@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Truck</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Update Truck Details</h2>
+      <form
+        action="{{ url_for('update_truck', truck_id=truck.id) }}"
+        method="post"
+      >
+        <label for="truck_number">Truck Number:</label>
+        <input
+          type="text"
+          id="truck_number"
+          name="truck_number"
+          value="{{ truck.truck_number }}"
+          required
+        />
+
+        <label for="truck_type">Truck Type:</label>
+        <input
+          type="text"
+          id="truck_type"
+          name="truck_type"
+          value="{{ truck.truck_type }}"
+          required
+        />
+
+        <label for="truck_company">Truck Company:</label>
+        <input
+          type="text"
+          id="truck_company"
+          name="truck_company"
+          value="{{ truck.truck_company }}"
+          required
+        />
+
+        <label for="length">Length:</label>
+        <input
+          type="number"
+          id="length"
+          name="length"
+          value="{{ truck.length }}"
+          step="0.01"
+          required
+        />
+
+        <label for="width">Width:</label>
+        <input
+          type="number"
+          id="width"
+          name="width"
+          value="{{ truck.width }}"
+          step="0.01"
+          required
+        />
+
+        <label for="height">Height:</label>
+        <input
+          type="number"
+          id="height"
+          name="height"
+          value="{{ truck.height }}"
+          step="0.01"
+          required
+        />
+
+        <label for="conditions">Conditions:</label>
+        <textarea id="conditions" name="conditions" required>
+{{ truck.conditions }}</textarea
+        >
+
+        <label for="dispatch_plan_id">Dispatch Plan ID:</label>
+        <input
+          type="number"
+          id="dispatch_plan_id"
+          name="dispatch_plan_id"
+          value="{{ truck.dispatch_plan_id }}"
+          required
+        />
+
+        <div class="card">
+          <h3>Driver Details</h3>
+          <label for="driver_name">Driver Name:</label>
+          <input
+            type="text"
+            id="driver_name"
+            name="driver_name"
+            value="{{ truck.driver_name }}"
+            required
+          />
+
+          <label for="driver_license">Driver License:</label>
+          <input
+            type="text"
+            id="driver_license"
+            name="driver_license"
+            value="{{ truck.driver_license }}"
+            required
+          />
+        </div>
+
+        <button type="submit">Update Truck</button>
+      </form>
+    </div>
+  </body>
+</html>

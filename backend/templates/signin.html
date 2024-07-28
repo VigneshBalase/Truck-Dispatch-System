@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 1.5rem;
+        color: #333;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #555;
+        text-align: left;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #667eea;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #556cd6;
+      }
+
+      .social-login {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-login a {
+        color: #667eea;
+        text-decoration: none;
+        font-size: 1.5rem;
+        transition: color 0.3s;
+      }
+
+      .social-login a:hover {
+        color: #556cd6;
+      }
+
+      p {
+        margin-top: 1rem;
+        color: #555;
+      }
+
+      a {
+        color: #667eea;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Sign In</h2>
+      <form action="/signin" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <button type="submit">Sign In</button>
+      </form>
+      <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+      <div class="social-login">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </body>
+</html>

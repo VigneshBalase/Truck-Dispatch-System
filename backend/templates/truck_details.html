@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Truck Details</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    {% extends 'dashboard.html' %} {% block content %}
+    <div class="container">
+      <h2>Truck Details</h2>
+      <form action="{{ url_for('truck_details') }}" method="post">
+        <label for="truck_number">Truck Number:</label>
+        <input type="text" id="truck_number" name="truck_number" required />
+
+        <label for="truck_type">Truck Type:</label>
+        <input type="text" id="truck_type" name="truck_type" required />
+
+        <label for="truck_company">Truck Company:</label>
+        <input type="text" id="truck_company" name="truck_company" required />
+
+        <label for="length">Length:</label>
+        <input type="number" id="length" name="length" step="0.01" required />
+
+        <label for="width">Width:</label>
+        <input type="number" id="width" name="width" step="0.01" required />
+
+        <label for="height">Height:</label>
+        <input type="number" id="height" name="height" step="0.01" required />
+
+        <label for="conditions">Conditions:</label>
+        <textarea id="conditions" name="conditions" required></textarea>
+
+        <label for="dispatch_plan_id">Dispatch Plan ID:</label>
+        <input
+          type="number"
+          id="dispatch_plan_id"
+          name="dispatch_plan_id"
+          required
+        />
+
+        <div class="card">
+          <h3>Driver Details</h3>
+          <label for="driver_name">Driver Name:</label>
+          <input type="text" id="driver_name" name="driver_name" required />
+
+          <label for="driver_license">Driver License:</label>
+          <input
+            type="text"
+            id="driver_license"
+            name="driver_license"
+            required
+          />
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <h2>Truck List</h2>
+      <table id="truckTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Truck Number</th>
+            <th>Truck Type</th>
+            <th>Truck Company</th>
+            <th>Driver Name</th>
+            <th>Driver License</th>
+            <th>Length</th>
+            <th>Width</th>
+            <th>Height</th>
+            <th>Conditions</th>
+            <th>Dispatch Plan ID</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for truck in trucks %}
+          <tr>
+            <td>{{ truck.id }}</td>
+            <td>{{ truck.truck_number }}</td>
+            <td>{{ truck.truck_type }}</td>
+            <td>{{ truck.truck_company }}</td>
+            <td>{{ truck.driver_name }}</td>
+            <td>{{ truck.driver_license }}</td>
+            <td>{{ truck.length }}</td>
+            <td>{{ truck.width }}</td>
+            <td>{{ truck.height }}</td>
+            <td>{{ truck.conditions }}</td>
+            <td>{{ truck.dispatch_plan_id }}</td>
+            <td>
+              <button onclick="editTruck({{ truck.id }})">Edit</button>
+              <button onclick="deleteTruck({{ truck.id }})">Delete</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script src="{{ url_for('static', filename='js/truckscripts.js') }}"></script>
+    {% endblock %}
+  </body>
+</html>
